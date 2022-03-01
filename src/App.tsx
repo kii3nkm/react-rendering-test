@@ -22,6 +22,7 @@ export default function App() {
       <br />
       <button onClick={onClickOpen}>表示</button>
       <ChildArea open={open} />
+      <p>修正しました。</p>
     </div>
   );
 }
