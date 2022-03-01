@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ChildArea } from "./ChildArea";
-import "./styles.css";
 
 export default function App() {
   console.log("App");
@@ -15,14 +14,15 @@ export default function App() {
     setOpen(!open);
   };
 
+  const onClickClose = useCallback(() => setOpen(false), [setOpen]);
+ 
   return (
     <div className="App">
       <input value={text} onChange={onChangeText} />
       <br />
       <br />
       <button onClick={onClickOpen}>表示</button>
-      <ChildArea open={open} />
-      <p>修正しました。</p>
+      <ChildArea open={open} onClickClose={onClickClose} />
     </div>
   );
 }

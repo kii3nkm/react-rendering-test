@@ -1,18 +1,15 @@
-import { FC } from "react";
-
-const style = {
-  width: "100%",
-  height: "200px",
-  backgroundColor: "khaki"
-};
+import { FC, memo } from "react";
 
 type Props = {
   open: boolean;
+  onClickClose: () => void;
 };
 
-export const ChildArea: FC<Props> = (props) => {
-  const { open } = props;
-  const data = [...Array(2000).keys()];
+export const ChildArea: FC<Props> = memo((props) => {
+  const { open, onClickClose } = props;
+  console.log("ChildArea was rendered!");
+
+  const data = [...Array.from(Array(2000).keys())];
   data.forEach(() => {
     console.log("...");
   });
@@ -20,10 +17,12 @@ export const ChildArea: FC<Props> = (props) => {
   return (
     <>
       {open ? (
-        <div style={style}>
+        <div>
+          <hr />
           <p>child component</p>
+          <button onClick={onClickClose}>close</button>
         </div>
       ) : null}
     </>
   );
-};
+});
